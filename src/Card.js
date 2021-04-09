@@ -8,8 +8,7 @@ import React, { useState } from "react";
   Heirarchy -
 */
 function Card ({card}) {
-  let image = card.data.cards[0].image
-  console.log("Card is: " , card);
+  let image = card.image
   return (
     <img src={image} alt="Card Unavailable"/>
   )
