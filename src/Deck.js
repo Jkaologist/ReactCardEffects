@@ -17,8 +17,11 @@ function Deck () {
 
   async function getATopCard() {
     let deck_id = deck.data.deck_id
-    console.log("deck id", deck_id)
     const card = await axios.get(`${API_URL}/${deck_id}/draw/?count=1`)
+    if (card.data.remaining === 0 ) {
+      alert("No Mo Cards 4 U")
+      document.querySelector("button").remove()
+    };
     setDrawn(drawn => [...drawn, card])
   }
 
@@ -32,11 +35,9 @@ function Deck () {
   }, []);
 
 
-  // Draw a card from the deck
-
   return (
     <div>
-      <button onClick={getATopCard}>GIMME A CARD!!!!!!</button>
+      <button className="deleteMe" onClick={getATopCard}>GIMME A CARD!!!!!!</button>
       <div>
         {drawn.map((card) =>
           <Card 
